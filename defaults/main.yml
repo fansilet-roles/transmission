@@ -1,0 +1,21 @@
+---
+# define the transmission server container image
+transmission_quadlet:
+  image: "lscr.io/linuxserver/transmission"
+  tag: "latest"
+
+transmission_environment:
+  PUID: 1000
+  PGID: 1000
+  TZ: "Etc/UTC"
+
+transmission_volumes:
+  - name: config
+    path: /srv/transmission/config
+    dest: /config
+  - name: downloads
+    path: /srv/transmission/downloads
+    dest: /downloads
+  - name: watch
+    path: /srv/transmission/watch
+    dest: /watch

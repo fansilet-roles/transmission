@@ -1,0 +1,11 @@
+---
+- name: Reload SystemD Daemon
+  ansible.builtin.shell:
+    cmd: systemctl daemon-reload
+  listen: daemon-reload
+
+- name: Restart Transmission quadlet container
+  ansible.builtin.service:
+    name: transmission
+    state: restarted
+  listen: transmission-restart

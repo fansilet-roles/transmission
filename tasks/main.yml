@@ -1,0 +1,17 @@
+---
+- name: "Assuring Volumes Exists"
+  ansible.builtin.file:
+    path: "{{ vol.path }}"
+    mode: "{{ vol.mode | default('0755') }}"
+    state: directory
+  loop: "{{ transmission_volumes }}"
+  loop_control:
+    loop_var: vol
+
+- name: "Installing Transmission Quadlet Template"
+  ansible.builtin.template:
+    src: transmission.container.j2
+    dest: "{{ __transmission_quadlet_container }}"
+  notify:
+    - daemon-reload
+    - transmission-restart

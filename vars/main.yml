@@ -1,0 +1,6 @@
+---
+# define the systemD directory for quadlet files
+__transmission_unit_path: "/usr/share/containers/systemd/"
+
+# define the quadlet container file
+__transmission_quadlet_container: "{{ __transmission_unit_path }}transmission.container"

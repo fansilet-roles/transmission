@@ -1,0 +1,20 @@
+# Transmission Server Quadlet Container
+[Unit]
+Description=Manage the Transmission Service
+After=network.target
+
+[Container]
+Image={{ transmission_quadlet.image }}:{{ transmission_quadlet.tag }}
+{% for key, value in transmission_environment.items() %}
+Environment={{ key }}={{ value }}
+{% endfor %}
+{% for vol in transmission_volumes %}
+Volume={{ vol.path }}:{{ vol.dest }}:Z
+{% endfor %}
+PublishPort=9091:9091/tcp
+PublishPort=51413:51413/tcp
+PublishPort=51413:51413/udp
+
+[Install]
+# Start by default on boot
+WantedBy=network.target multi-user.target default.target
