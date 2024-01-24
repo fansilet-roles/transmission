@@ -4,8 +4,8 @@
     cmd: systemctl daemon-reload
   listen: daemon-reload
 
-- name: Restart Transmission quadlet container
+- name: "Restart {{ __service_name | capitalize }} quadlet container"
   ansible.builtin.service:
-    name: transmission
+    name: "{{ __service_name }}"
     state: restarted
-  listen: transmission-restart
+  listen: quadlet-restart

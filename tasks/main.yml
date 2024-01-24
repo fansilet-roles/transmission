@@ -1,4 +1,8 @@
 ---
+- name: "Defining the Quadlet Service"
+  ansible.builtin.set_fact:
+    __service_name: transmission
+
 - name: "Assuring Volumes Exists"
   ansible.builtin.file:
     path: "{{ vol.path }}"
@@ -14,4 +18,4 @@
     dest: "{{ __transmission_quadlet_container }}"
   notify:
     - daemon-reload
-    - transmission-restart
+    - quadlet-restart
